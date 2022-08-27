@@ -18,8 +18,8 @@ const getAllRecipes = async () => {
       analyzedInstructions: recipe.analyzedInstructions[0]?.steps.map(each => { return each.step }),
     };
   });
-  console.log(apiData);
-  //   return apiData;
+//   console.log(apiData);
+    return apiData;
 };
 
 module.exports = getAllRecipes;
