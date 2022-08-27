@@ -6,7 +6,7 @@ const { API_KEY } = process.env;
 
 const recipeRouter = Router();
 
-recipeRouter.get("/", async (req, res) => {
+recipeRouter.get("", async (req, res) => {
   const { name } = req.query;
   const apiInfo = await getAllRecipes();
   try {
