@@ -1,11 +1,19 @@
 //son funciones que gestionan los actions
 
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import reducer from "./reducer.js";
+import { GET_RECIPES } from "./type";
 
-export const store = createStore(
-  reducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const initialState = {
+  recipes: [],
+};
+
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case GET_RECIPES:
+      return {
+        ...state,
+        recipes: action.payload,
+      };
+    default:
+      return state;
+  }
+}

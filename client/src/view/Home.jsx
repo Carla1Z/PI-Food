@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Cards from "../components/Cards";
 
 export default function Home(){
     return(
@@ -10,6 +11,7 @@ export default function Home(){
                 <button>Formulario</button>
             </Link>
             <h2>Bienvenidos a la superhome✌</h2>
+            <Cards />
         </div>
     )
 }
