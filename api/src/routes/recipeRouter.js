@@ -3,6 +3,7 @@ const { Router } = require("express");
 const axios = require("axios");
 const getAllRecipes = require("../controllers/getAllRecipes");
 const { API_KEY } = process.env;
+const { Recipe } = require("../db");
 
 const recipeRouter = Router();
 
@@ -34,19 +35,32 @@ recipeRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
   const apiInfo = await getAllRecipes();
   try {
-    if(id){
-      const recipesId = apiInfo.filter(el => el.id == id)
+    if (id) {
+      const recipesId = apiInfo.filter((el) => el.id == id);
 
       recipesId.length
-      ? res.status(200).send(recipesId)
-      : res.status(404).send("ID not found");
-    }else{
-      res.send("ID no valido")
+        ? res.status(200).send(recipesId)
+        : res.status(404).send("ID not found");
+    } else {
+      res.send("invalid ID");
     }
-  //  res.send("GET de ruta id")
+    //  res.send("GET de ruta id")
   } catch (error) {
     console.log("ID no encontrado= " + error);
   }
+});
+
+recipeRouter.post("", async (req, res) => {
+  const { title, summary, healthScore, analyzedInstructions } = req.body;
+  try {
+    const newRecipe = await Recipe.create({title, summary, healthScore, analyzedInstructions})
+    res.status(201).send(newRecipe)
+    // res.status(201).send("Created recipe")
+    // res.send("POST de ruta recipe");
+  } catch (error) {
+    console.log("Error en la creación de la receta= " + error);
+  }
+
 });
 
 module.exports = recipeRouter;
