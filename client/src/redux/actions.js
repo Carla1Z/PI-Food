@@ -1,0 +1,1 @@
+//objeto JS con 2 propiedades: type y payload(datos)
