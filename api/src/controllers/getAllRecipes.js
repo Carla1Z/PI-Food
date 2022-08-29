@@ -12,13 +12,16 @@ const getAllRecipes = async () => {
   let apiData = apiInfo.map((recipe) => {
     return {
       id: recipe.id,
+      image: recipe.image,
       title: recipe.title,
+      dishTypes: recipe.dishTypes,
       healthScore: recipe.healthScore,
+      diets: recipe.diets,
       summary: recipe.summary,
       analyzedInstructions: recipe.analyzedInstructions[0]?.steps.map(each => { return each.step }),
     };
   });
-//   console.log(apiData);
+  // console.log(apiData);
     return apiData;
 };
 
