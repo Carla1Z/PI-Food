@@ -1,6 +1,6 @@
 //objeto JS con 2 propiedades: type y payload(datos)
 import axios from "axios";
-import { GET_RECIPES } from "./type";
+import { GET_ID, GET_RECIPES } from "./type";
 
 export function getRecipes() {
   return async (dispatch) => {
@@ -8,6 +8,16 @@ export function getRecipes() {
     return dispatch({
       type: GET_RECIPES,
       payload: allRecipes.data,
+    });
+  };
+}
+
+export function getRecipesById(id) {
+  return async (dispatch) => {
+    let allRecipesId = await axios.get("http://localhost:3001/recipes/" + id);
+    return dispatch({
+      type: GET_ID,
+      payload: allRecipesId.data,
     });
   };
 }
