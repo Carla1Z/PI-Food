@@ -9,6 +9,7 @@ import Home from "./view/Home";
 import LandingPage from "./view/LandingPage";
 
 function App() {
+
   const dispatch = useDispatch();
   //El useEffect se va a encargar de despachar la accion getRecipes, haciendo uso del dispatch
   // Despachamos con el useEffect, se llena allRecipes y lo traemos en una constante
