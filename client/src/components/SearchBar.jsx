@@ -32,8 +32,9 @@ function handleSubmit(e) {
 //     console.log(e.target);
 //   }
 function handleInputChange(e) {
-    e.preventDefault();
-    setSearch(e.target.value);
+  e.preventDefault();
+  setSearch(e.target.value);
+      console.log(e.target.value);
   }
 
 
