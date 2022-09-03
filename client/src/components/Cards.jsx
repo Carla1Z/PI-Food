@@ -21,15 +21,25 @@ const paged = (pageNumber) => {
   setCurrentPage(pageNumber);
 };
 
+const nextPage = () => {
+  setCurrentPage(currentPage + 1)
+}
+
+const prevPage = () => {
+  setCurrentPage(currentPage - 1)
+}
 
   return (
     <div>
+
       <div>
+        <button onClick={prevPage}>Anterior</button>
       <Paged
         recipesPerPage={recipesPerPage}
         allRecipes={allRecipes.length}
         paged={paged}
       />
+      <button onClick={nextPage}>Siguiente</button>
       </div>
 
 
