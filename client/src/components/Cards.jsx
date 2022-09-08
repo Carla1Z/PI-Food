@@ -5,6 +5,7 @@ import { getOrderAbc, getRecipes } from "../redux/actions";
 import Card from "./Card";
 import styles from "./css/Cards.module.css";
 import Paged from "./Paged";
+import { Link } from "react-router-dom";
 
 export default function Cards() {
   const dispatch = useDispatch();
@@ -72,10 +73,13 @@ export default function Cards() {
       </div>
 
       <div className={styles.cardContainer}>
-        {currentRecipes.length > 0 ? (
-          currentRecipes.map((r) => {
-            return <Card title={r.title} image={r.image} diets={r.diets} />;
-          })
+        {
+        currentRecipes.length > 0 ? (
+          currentRecipes.map((r) => (
+            <Link to={`/home/${r.id}`}>
+            <Card title={r.title} image={r.image} diets={r.diets} />;
+            </Link>
+          ))
         ) : (
           <h3>No han encontrado recetas</h3>
         )}
