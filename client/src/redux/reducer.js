@@ -1,11 +1,19 @@
 //son funciones que gestionan los actions
 
-import { GET_ID, GET_NAME_RECIPE, GET_ORDER_ABC, GET_RECIPES } from "./type";
+import {
+  GET_DIETS,
+  GET_ID,
+  GET_NAME_RECIPE,
+  GET_ORDER_ABC,
+  GET_RECIPES,
+  POST_DIET,
+} from "./type";
 
 const initialState = {
   recipes: [],
   totalRecipes: [],
   detail: [],
+  diets: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -27,21 +35,31 @@ export default function reducer(state = initialState, action) {
         recipes: action.payload,
       };
     case GET_ORDER_ABC:
-      let sortedRecipes = [...state.recipes]       
-      sortedRecipes = action.payload === 'asc' ?
-      state.recipes.sort(function(a, b) {
-        if (a.title > b.title) return 1;
-        if (a.title < b.title) return -1;
-        return 0;
-      }) :
-      state.recipes.sort(function(a, b) {
-        if (a.title < b.title) return 1;
-        if (a.title > b.title) return -1;
-        return 0;
-      });          
+      let sortedRecipes = [...state.recipes];
+      sortedRecipes =
+        action.payload === "asc"
+          ? state.recipes.sort(function (a, b) {
+              if (a.title > b.title) return 1;
+              if (a.title < b.title) return -1;
+              return 0;
+            })
+          : state.recipes.sort(function (a, b) {
+              if (a.title < b.title) return 1;
+              if (a.title > b.title) return -1;
+              return 0;
+            });
       return {
         ...state,
-        recipes: sortedRecipes
+        recipes: sortedRecipes,
+      };
+    case POST_DIET:
+      return {
+        ...state,
+      };
+    case GET_DIETS:
+      return {
+        ...state,
+        diets: action.payload,
       };
     default:
       return state;
