@@ -3,7 +3,7 @@ const { Router } = require("express");
 const axios = require("axios");
 const getAllRecipes = require("../controllers/getAllRecipes");
 const { API_KEY } = process.env;
-const { Recipe } = require("../db");
+const { Recipe, Diet } = require("../db");
 
 const recipeRouter = Router();
 
@@ -51,12 +51,17 @@ recipeRouter.get("/:id", async (req, res) => {
 });
 
 recipeRouter.post("", async (req, res) => {
-  const { title, summary, healthScore, analyzedInstructions } = req.body;
+  const { title, summary, healthScore, analyzedInstructions, diets } = req.body;
   try {
     const newRecipe = await Recipe.create({title, summary, healthScore, analyzedInstructions})
-    res.status(201).send(newRecipe)
+    // res.status(201).send(newRecipe)
     // res.status(201).send("Created recipe")
-    // res.send("POST de ruta recipe");
+    //--------------------------------
+    const dietRecipe = await Diet.findAll({
+      where: { name: diets}
+    })
+    newRecipe.addDiet(dietRecipe)
+    res.status(200).send(newRecipe)
   } catch (error) {
     console.log("Error en la creación de la receta= " + error);
   }
