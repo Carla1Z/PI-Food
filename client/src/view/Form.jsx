@@ -1,20 +1,51 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getDiets } from "../redux/actions";
+import { Link, useHistory } from "react-router-dom";
+import { getDiets, postRecipe } from "../redux/actions";
 
 export default function Form() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const diets = useSelector((state) => state.diets);
 
-  const [recipe, setRecipe] = useState({
+
+  const [info, setInfo] = useState({
     title: "",
     summary: "",
     healthScore: "",
     analyzedInstructions: "",
     diets: [],
   });
+
+  function handleChange(e) {
+    setInfo({
+      ...info,
+      [e.target.value]: e.target.value,
+    });
+    console.log(info);
+  }
+
+  function handleSelect(e) {
+    setInfo({
+      ...info,
+      diets: [...info.diets, e.target.value],
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(postRecipe(info));
+    alert("Personaje creado");
+    setInfo({
+      title: "",
+      summary: "",
+      healthScore: "",
+      analyzedInstructions: "",
+      diets: [],
+    });
+    history.push("/home");
+  }
 
   useEffect(() => {
     dispatch(getDiets());
@@ -26,86 +57,48 @@ export default function Form() {
         <button>Home</button>
       </Link>
       <h1>Creá tu receta!</h1>
-      <form>
+
+      <form onChange={(e) => handleSubmit(e)}>
         <label>Titulo: </label>
         <input
           name="title"
           type="text"
-          //   value={recipe.title}
+          value={info.title}
+          onChange={handleChange}
           placeholder="Guiso de fideo moñito"
         />
         <label>Resumen:</label>
         <input
           name="summary"
           type="text"
-          // value={recipe.summary}
+          value={info.summary}
+          onChange={handleChange}
         />
         <label>Saludable: </label>
         <input
           name="healthScore"
-          type="text"
-          // value={recipe.healthScore}
+          type="number"
+          value={info.healthScore}
+          onChange={handleChange}
         />
         <label>Paso a paso: </label>
         <input
           name="analyzedInstructions"
           type="text"
-          //   value={recipe.analyzedInstructions}
+          value={info.analyzedInstructions}
+          onChange={handleChange}
         />
         <label>Tipo de dieta:</label>
-        <div>
-          <label>
-            <input name="gluten free" type="checkbox" />
-            Libre de gluten
-          </label>
+        <select onChange={(e) => handleSelect(e)}>
+          {diets.map((el) => (
+            <option value={el.name}>{el.name}</option>
+          ))}
+        </select>
+        <ul>
+          <li>{info.diets.map((el) => el + " ,")}</li>
+        </ul>
 
-          <label>
-            <input name="dairy free" type="checkbox" />
-            Libre de lácteos
-          </label>
-
-          <label>
-            <input name="lacto ovo vegetarian" type="checkbox" />
-            Lacto ovo vegetariano
-          </label>
-
-          <label>
-            <input name="vegan" type="checkbox" />
-            Vegano
-          </label>
-
-          <label>
-            <input name="paleolithic" type="checkbox" />
-            Paleolítico
-          </label>
-
-          <label>
-            <input name="primal" type="checkbox" />
-            Primitivo
-          </label>
-
-          <label>
-            <input name="whole 30" type="checkbox" />
-            Whole 30
-          </label>
-
-          <label>
-            <input name="pescatarian" type="checkbox" />
-            Pescetariano
-          </label>
-
-          <label>
-            <input name="ketogenic" type="checkbox" />
-            Cetogenico
-          </label>
-
-          <label>
-            <input name="fodmap friendly" type="checkbox" />
-            Fodmap friendly
-          </label>
-        </div>
-
-        <button>Enviar receta</button>
+        <button type="submit">Enviar receta</button>
       </form>
     </div>
   );
