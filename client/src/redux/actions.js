@@ -1,6 +1,7 @@
 //objeto JS con 2 propiedades: type y payload(datos)
 import axios from "axios";
 import {
+  DIET_FILTER,
   GET_DIETS,
   GET_ID,
   GET_NAME_RECIPE,
@@ -37,6 +38,14 @@ export function getRecipesName(name) {
       type: GET_NAME_RECIPE,
       payload: recipeName.data,
     });
+  };
+}
+
+export function filterByDiets(payload) {
+  console.log('payload orden dietas= ' + payload);
+  return {
+    type: DIET_FILTER,
+    payload,
   };
 }
 

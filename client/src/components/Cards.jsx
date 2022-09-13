@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
-import { getOrderAbc, getRecipes } from "../redux/actions";
+import { filterByDiets, getOrderAbc, getRecipes } from "../redux/actions";
 import Card from "./Card";
 import styles from "./css/Cards.module.css";
 import Paged from "./Paged";
@@ -53,12 +53,33 @@ export default function Cards() {
     // ↑↑↑
   }
 
+  //ORDEN POR DIETAS
+  function handleFilterDiets(e) {
+    dispatch(filterByDiets(e.target.value));
+  }
+
   return (
     <div>
       <div>
         <select onChange={(e) => handleSort(e)}>
           <option value="asc">A - Z</option>
           <option value="desc">Z - A</option>
+        </select>
+      </div>
+
+      <div>
+        <select onChange={(e) => handleFilterDiets(e)}>
+          <option value="diets">All</option>
+          <option value="vegan">Vegan</option>
+          <option value="lacto ovo vegetarian">Vegetarian</option>
+          <option value="dairy free">Dairy free</option>
+          <option value="gluten free">Gluten free</option>
+          <option value="paleolithic">Paleolithic</option>
+          <option value="primal">Primal</option>
+          <option value="whole 30">Whole 30</option>
+          <option value="pescatarian">Pescatarian</option>
+          <option value="ketogenic">Ketogenic</option>
+          <option value="fodmap friendly">Fodmap friendly</option>
         </select>
       </div>
 
@@ -73,11 +94,10 @@ export default function Cards() {
       </div>
 
       <div className={styles.cardContainer}>
-        {
-        currentRecipes.length > 0 ? (
+        {currentRecipes.length > 0 ? (
           currentRecipes.map((r) => (
             <Link to={`/home/${r.id}`}>
-            <Card title={r.title} image={r.image} diets={r.diets} />;
+              <Card title={r.title} image={r.image} diets={r.diets} />;
             </Link>
           ))
         ) : (

@@ -1,6 +1,6 @@
 export default function Paged({paged, recipesPerPage, allRecipes}) {
   const pageNumber = [];
-console.log(allRecipes);
+console.log('recetas= ' + allRecipes);
   for (let i = 1; i <= Math.ceil(allRecipes / recipesPerPage); i++) {
     pageNumber.push(i);
   }

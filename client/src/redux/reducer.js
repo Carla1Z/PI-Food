@@ -1,6 +1,7 @@
 //son funciones que gestionan los actions
 
 import {
+  DIET_FILTER,
   GET_DIETS,
   GET_ID,
   GET_NAME_RECIPE,
@@ -33,6 +34,19 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         recipes: action.payload,
+      };
+    case DIET_FILTER:
+      let allRecipes = state.totalRecipes;
+      let filter =
+        action.payload === "diets"
+          ? allRecipes
+          : allRecipes.filter((el) => {
+            return el.diets.includes(action.payload)
+          });
+          // console.log(filter);
+      return {
+        ...state,
+        recipes: filter,
       };
     case GET_ORDER_ABC:
       let sortedRecipes = [...state.recipes];
