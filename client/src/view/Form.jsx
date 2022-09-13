@@ -7,13 +7,28 @@ import { getDiets, postRecipe } from "../redux/actions";
 export default function Form() {
   const dispatch = useDispatch();
   const diets = useSelector((state) => state.diets);
+  const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
-    name: "",
+    title: "",
     summary: "",
     healthScore: "",
     analyzedInstruction: "",
     diets: [],
   });
+
+  function controlled(input) {
+    let errors = {};
+    if (!input.title.trim()) {
+      errors.title = "Se requiere un titulo";
+    } else if (!input.summary) {
+      errors.summary = "Se requiere un resumen";
+    } else if (!input.healthScore) {
+      errors.healthScore = "Se requiere un nivel de saludable";
+    } else if (!input.analyzedInstruction) {
+      errors.analyzedInstruction = "Se requieren instrucciones";
+    }
+    return errors;
+  }
 
   const handleChange = (e) => {
     setInput({
@@ -21,6 +36,13 @@ export default function Form() {
       [e.target.name]: e.target.value,
     });
     // console.log(input);
+    setErrors(
+      controlled({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+    console.log(input);
   };
 
   const handleSelect = (e) => {
@@ -29,6 +51,26 @@ export default function Form() {
       diets: [...input.diets, e.target.value],
     });
   };
+
+  function handleDelete(e) {
+    setInput({
+      ...input,
+      diets: input.diets.filter((el) => el !== e),
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(postRecipe(input));
+    // alert("Receta creada");
+    setInput({
+      title: "",
+      summary: "",
+      healthScore: "",
+      analyzedInstruction: "",
+      diets: [],
+    });
+  }
 
   useEffect(() => {
     dispatch(getDiets());
@@ -42,15 +84,16 @@ export default function Form() {
 
       <h1>Crea tu receta!</h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label>Titulo:</label>
           <input
             type="text"
-            value={input.name}
-            name="name"
+            value={input.title}
+            name="title"
             onChange={handleChange}
           />
+          {errors.title && <p>{errors.title}</p>}
         </div>
         <div>
           <label>Resumen:</label>
@@ -60,15 +103,17 @@ export default function Form() {
             name="summary"
             onChange={handleChange}
           />
+          {errors.summary && <p>{errors.summary}</p>}
         </div>
         <div>
           <label>Saludable:</label>
           <input
-            type="text"
+            type="number"
             value={input.healthScore}
             name="healthScore"
             onChange={handleChange}
           />
+          {errors.healthScore && <p>{errors.healthScore}</p>}
         </div>
         <div>
           <label>Imagen:</label>
@@ -87,6 +132,7 @@ export default function Form() {
             name="analyzedInstruction"
             onChange={handleChange}
           />
+          {errors.analyzedInstruction && <p>{errors.analyzedInstruction}</p>}
         </div>
 
         <select onChange={handleSelect}>
@@ -94,9 +140,18 @@ export default function Form() {
             <option value={el.name}>{el.name}</option>
           ))}
         </select>
-        <span>
-          <p>{input.diets.map((el) => ' -' + el )}</p>
-        </span>
+
+        <div>
+          {input.diets.map((el) => (
+            <ul>
+              <li>
+                {el}
+                <button onClick={() => handleDelete(el)}>X</button>
+              </li>
+            </ul>
+          ))}
+        </div>
+
         <button type="submit">Crear receta</button>
       </form>
     </div>
