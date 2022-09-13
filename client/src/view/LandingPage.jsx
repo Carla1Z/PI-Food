@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./css/LandingPage.module.css";
+import food from '../assets/food.gif'
 
 export default function LandingPage() {
   return (
@@ -8,8 +9,11 @@ export default function LandingPage() {
         <div className={styles.henry}>Henry</div>
         <div className={styles.food}>Food</div>
         <Link to="/home">
-          <button>Ir a la superhome</button>
+          <button className={styles.button}>Cocinar</button>
         </Link>
+      </div>
+      <div className={styles.gif}>
+        <img src={food} alt='gif animado' />
       </div>
     </div>
   );

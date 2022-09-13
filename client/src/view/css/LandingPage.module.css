@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
 body{
     background-image: url(../../assets/bg-landing.jpg);
     background-position: center;
@@ -6,7 +9,45 @@ body{
     background-size: cover;
 }
 
+.container{
+    display: grid;
+    justify-content: space-around;
+    justify-items: center;
+    line-height: 150px;
+    margin-top: 50px;
+    position: absolute;
+    left: 10%;
+}
+
 .henry{
-    color: aqua;
-    
+    /* padding: 30px; */
+    font-family: 'Bebas Neue', cursive;
+    font-size: 70px;
+}
+
+.food{
+    /* padding: 30px; */
+    font-family: 'Great Vibes', cursive;
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.button{
+    /* width: 100%; */
+    padding: 35px;
+    border: none;
+    border-radius: 30px;
+}
+
+.gif {
+    display: grid;
+    justify-content: end;
+    align-items: center;
+    position: absolute;
+    right: 10%;
+}
+
+img {
+    max-height: 600px;
+    border-radius: 30px;
 }
