@@ -7,6 +7,7 @@ import {
   GET_NAME_RECIPE,
   GET_ORDER_ABC,
   GET_RECIPES,
+  ORDER_HEALTHY,
 } from "./type";
 
 export function getRecipes() {
@@ -42,7 +43,7 @@ export function getRecipesName(name) {
 }
 
 export function filterByDiets(payload) {
-  console.log('payload orden dietas= ' + payload);
+  console.log("payload orden dietas= " + payload);
   return {
     type: DIET_FILTER,
     payload,
@@ -52,6 +53,13 @@ export function filterByDiets(payload) {
 export function getOrderAbc(payload) {
   return {
     type: GET_ORDER_ABC,
+    payload,
+  };
+}
+
+export function orderByHealthy(payload) {
+  return {
+    type: ORDER_HEALTHY,
     payload,
   };
 }

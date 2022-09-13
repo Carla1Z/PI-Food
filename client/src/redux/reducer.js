@@ -7,6 +7,7 @@ import {
   GET_NAME_RECIPE,
   GET_ORDER_ABC,
   GET_RECIPES,
+  ORDER_HEALTHY,
   POST_DIET,
 } from "./type";
 
@@ -66,6 +67,20 @@ export default function reducer(state = initialState, action) {
         ...state,
         recipes: sortedRecipes,
       };
+    case ORDER_HEALTHY:
+      let healthy = action.payload === 'max' 
+      ? state.totalRecipes.sort(function (a, b) {
+        if((a.healthScore - b.healthScore) < 0) return 1
+        if((a.healthScore - b.healthScore) > 0) return -1
+      }) 
+      : state.totalRecipes.sort(function (a, b) {
+        if((a.healthScore - b.healthScore) > 0) return 1
+        if((a.healthScore - b.healthScore) < 0) return -1
+      })
+      return {
+        ...state,
+        recipes: healthy
+      }
     case POST_DIET:
       return {
         ...state,

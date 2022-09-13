@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
-import { filterByDiets, getOrderAbc, getRecipes } from "../redux/actions";
+import { filterByDiets, getOrderAbc, getRecipes, orderByHealthy } from "../redux/actions";
 import Card from "./Card";
 import styles from "./css/Cards.module.css";
 import Paged from "./Paged";
@@ -53,6 +53,14 @@ export default function Cards() {
     // ↑↑↑
   }
 
+  //ORDEN POR HEALTHY
+  function handleFilterByHealthy(e){
+    e.preventDefault()
+    dispatch(orderByHealthy(e.target.value))
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`);
+  }
+
   //ORDEN POR DIETAS
   function handleFilterDiets(e) {
     dispatch(filterByDiets(e.target.value));
@@ -80,6 +88,13 @@ export default function Cards() {
           <option value="pescatarian">Pescatarian</option>
           <option value="ketogenic">Ketogenic</option>
           <option value="fodmap friendly">Fodmap friendly</option>
+        </select>
+      </div>
+
+      <div>
+        <select onChange={(e) => handleFilterByHealthy(e)}>
+          <option value='max'>Mas saludable</option>
+          <option value='min'>Menos saludable</option>
         </select>
       </div>
 
