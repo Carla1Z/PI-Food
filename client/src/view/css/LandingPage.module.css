@@ -2,52 +2,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 body{
-    background-image: url(../../assets/bg-landing.jpg);
+    margin: 0;
+    height: 100vh;
+    background-image: url(../../assets/bg.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 
-.container{
+.container {
     display: grid;
-    justify-content: space-around;
-    justify-items: center;
-    line-height: 150px;
-    margin-top: 50px;
-    position: absolute;
-    left: 10%;
+    grid-template-columns: 60% 40%;
+}
+
+.gif{
+    background-image: url(../../assets/food.gif);
+    background-size: cover;
+    border-radius: 0 30px 30px 0;
+    height: 100vh;
+}
+
+.henryFood{
+    /* background-image: url(../../assets/bg.jpg); */
+    display: grid;
+    justify-content: center;
+    align-content: center;
+
 }
 
 .henry{
-    /* padding: 30px; */
+    color: aliceblue;
     font-family: 'Bebas Neue', cursive;
-    font-size: 70px;
+    font-size: 100px;
 }
 
 .food{
-    /* padding: 30px; */
+    color: aliceblue;
     font-family: 'Great Vibes', cursive;
-    font-size: 80px;
+    font-size: 100px;
     font-weight: bold;
 }
 
 .button{
-    /* width: 100%; */
-    padding: 35px;
+    width: 100%;
+    padding: 25px;
     border: none;
     border-radius: 30px;
-}
-
-.gif {
-    display: grid;
-    justify-content: end;
-    align-items: center;
-    position: absolute;
-    right: 10%;
-}
-
-img {
-    max-height: 600px;
-    border-radius: 30px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: x-large;
+    cursor: pointer;
 }
