@@ -1,0 +1,11 @@
+body{
+    background-image: url(../../assets/bg-landing.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.henry{
+    color: aqua;
+}
