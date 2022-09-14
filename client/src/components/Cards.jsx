@@ -112,12 +112,21 @@ export default function Cards() {
         {currentRecipes.length > 0 ? (
           currentRecipes.map((r) => (
             <Link to={`/home/${r.id}`}>
-              <Card title={r.title} image={r.image} diets={r.diets} />;
-            </Link>
+              <Card title={r.title} image={r.image} diets={r.diets} />
+             </Link>
           ))
         ) : (
           <h3>No han encontrado recetas</h3>
         )}
+        {/* {currentRecipes?.map((r) => {
+          return (
+            <div>
+              <Card 
+              title={r.title} image={r.image} diets={r.diets}
+              />
+            </div>
+          )
+        })} */}
       </div>
     </div>
   );

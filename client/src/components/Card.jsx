@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./css/Card.module.css";
 
 export default function Card({ image, title, diets }) {

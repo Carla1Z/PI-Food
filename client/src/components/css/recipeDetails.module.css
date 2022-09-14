@@ -1,0 +1,4 @@
+.container{
+    background-color: blueviolet;
+    filter: blur(4px);
+}
