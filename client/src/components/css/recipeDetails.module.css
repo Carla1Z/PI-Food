@@ -1,4 +1,49 @@
-.container{
-    background-color: blueviolet;
-    filter: blur(4px);
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+.container {
+  background-color: rgba(255, 255, 255, 0.692);
+  display: grid;
+  margin: 20px;
+  border-radius: 20px;
+  font-family: "Inconsolata", monospace;
+}
+
+.detail {
+  /* filter: blur(4px); */
+  color: rgb(0, 0, 0);
+  padding: 30px;
+}
+
+.detail h2 {
+    font-family: "Lobster", cursive;
+}
+
+.detail div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.detail div h4{
+    width: 650px;
+}
+
+figure {
+  width: 25%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  background-color: rgba(240, 248, 255, 0.527);
+  border-radius: 20px;
+}
+
+figure ul {
+  list-style: circle;
+  color: gray;
+}
+
+figure img {
+  border-radius: 20px;
 }

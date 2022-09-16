@@ -29,19 +29,36 @@ export default function RecipeDetails({
 
   return (
     <div className={styles.container}>
-      {recipeDetails.length ? (
-        <div className={styles.recipeDetails}>
-          <h2>Nombre: {recipeDetails[0].title}</h2>
-          <img src={recipeDetails[0].image} alt="food" />
-          <h4>healthScore: {recipeDetails[0].healthScore}</h4>
-          <h4>Tipo de plato: {recipeDetails[0].dishTypes}</h4>
-          <h4>Dieta: {recipeDetails[0].diets}</h4>
-          <h4>Resumen: {recipeDetails[0].summary}</h4>
-          <h4>Paso a paso: {recipeDetails[0].analyzedInstructions}</h4>
-        </div>
-      ) : (
-        <p>No hay nada</p>
-      )}
+      <div>
+        {recipeDetails.length ? (
+          <div className={styles.detail}>
+            <h2>{recipeDetails[0].title}</h2>
+            <div>
+              <figure>
+                <img src={recipeDetails[0].image} alt="food" />
+                <ul>
+                  <li>
+                    <b>Tipo de plato:</b> {recipeDetails[0].dishTypes}
+                  </li>
+
+                  <li>
+                    <b>Health score:</b> {recipeDetails[0].healthScore}
+                  </li>
+
+                  <li>
+                    <b>Dieta:</b> {recipeDetails[0].diets}
+                  </li>
+                </ul>
+              </figure>
+
+              <h4>Resumen: {recipeDetails[0].summary}</h4>
+            </div>
+            <h4>Paso a paso: {recipeDetails[0].analyzedInstructions}</h4>
+          </div>
+        ) : (
+          <p>No hay nada</p>
+        )}
+      </div>
     </div>
   );
 }
