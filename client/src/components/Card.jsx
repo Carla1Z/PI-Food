@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styles from "./css/Card.module.css";
 
 export default function Card({ image, title, diets }) {
@@ -6,7 +5,7 @@ export default function Card({ image, title, diets }) {
       <div className={styles.card}>
           <h3>{title}</h3>
           <img src={image} alt="recipe" />
-          <h5>{diets}</h5>
+          <p>{diets}</p>
       </div>
   );
 }

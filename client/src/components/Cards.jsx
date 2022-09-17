@@ -108,7 +108,7 @@ export default function Cards() {
       <div className={styles.cardContainer}>
         {currentRecipes.length > 0 ? (
           currentRecipes.map((r) => (
-            <Link to={`/home/${r.id}`}>
+            <Link to={`/home/${r.id}`} style={{textDecoration: 'none'}}>
               <Card title={r.title} image={r.image} diets={r.diets} />
             </Link>
           ))

@@ -5,9 +5,17 @@
   width: 250px;
   height: 250px;
   margin-bottom: 26px;
-  background-color: darksalmon;
+  background-color: rgba(240, 248, 255, 0.438);
+  color: rgba(240, 248, 255, 0.800);
   border-radius: 20px;
+  font-family: "Inconsolata", monospace;
+  color: rgb(83, 77, 77);
 }
+
+.card h3{
+  font-family: inherit;
+}
+
 .card img {
     width: 250px;
     height: 100px;
