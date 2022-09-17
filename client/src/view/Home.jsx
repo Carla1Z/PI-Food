@@ -6,12 +6,6 @@ import SearchBar from "../components/SearchBar";
 export default function Home() {
   return (
     <div>
-      <Link to="/">
-        <button>Inicio</button>
-      </Link>
-      <Link to="form">
-        <button>Formulario</button>
-      </Link>
       <SearchBar />
       {/* <Order setCurrentPage={setCurrentPage} /> */}
       <Cards />
