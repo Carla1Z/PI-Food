@@ -12,22 +12,21 @@
 .detail {
   /* filter: blur(4px); */
   color: rgb(0, 0, 0);
-  padding: 30px;
 }
 
 .detail h2 {
-    font-family: "Lobster", cursive;
+  font-family: "Lobster", cursive;
 }
 
-.detail div{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+.detail div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.detail div h4{
-    width: 650px;
+.detail div h4 {
+  width: 50%;
 }
 
 figure {
@@ -45,6 +44,6 @@ figure ul {
 }
 
 figure img {
-width: 350px;
+  width: 350px;
   border-radius: 20px;
 }
