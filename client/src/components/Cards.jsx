@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
-import { filterByDiets, getOrderAbc, getRecipes, orderByHealthy } from "../redux/actions";
+import {
+  filterByDiets,
+  getOrderAbc,
+  getRecipes,
+  orderByHealthy,
+} from "../redux/actions";
 import Card from "./Card";
 import styles from "./css/Cards.module.css";
 import Paged from "./Paged";
@@ -54,9 +59,9 @@ export default function Cards() {
   }
 
   //ORDEN POR HEALTHY
-  function handleFilterByHealthy(e){
-    e.preventDefault()
-    dispatch(orderByHealthy(e.target.value))
+  function handleFilterByHealthy(e) {
+    e.preventDefault();
+    dispatch(orderByHealthy(e.target.value));
     setCurrentPage(1);
     setOrden(`Ordenado ${e.target.value}`);
   }
@@ -67,45 +72,37 @@ export default function Cards() {
   }
 
   return (
-    <div>
-      <div>
-        <select onChange={(e) => handleSort(e)}>
-          <option value="asc">A - Z</option>
-          <option value="desc">Z - A</option>
-        </select>
-      </div>
+    <div className={styles.cards}>
+      <div className={styles.select}>
+        <div>
+          <select onChange={(e) => handleSort(e)}>
+            <option value="asc">A - Z</option>
+            <option value="desc">Z - A</option>
+          </select>
+        </div>
 
-      <div>
-        <select onChange={(e) => handleFilterDiets(e)}>
-          <option value="diets">All</option>
-          <option value="vegan">Vegan</option>
-          <option value="lacto ovo vegetarian">Vegetarian</option>
-          <option value="dairy free">Dairy free</option>
-          <option value="gluten free">Gluten free</option>
-          <option value="paleolithic">Paleolithic</option>
-          <option value="primal">Primal</option>
-          <option value="whole 30">Whole 30</option>
-          <option value="pescatarian">Pescatarian</option>
-          <option value="ketogenic">Ketogenic</option>
-          <option value="fodmap friendly">Fodmap friendly</option>
-        </select>
-      </div>
+        <div>
+          <select onChange={(e) => handleFilterDiets(e)}>
+            <option value="diets">All</option>
+            <option value="vegan">Vegan</option>
+            <option value="lacto ovo vegetarian">Vegetarian</option>
+            <option value="dairy free">Dairy free</option>
+            <option value="gluten free">Gluten free</option>
+            <option value="paleolithic">Paleolithic</option>
+            <option value="primal">Primal</option>
+            <option value="whole 30">Whole 30</option>
+            <option value="pescatarian">Pescatarian</option>
+            <option value="ketogenic">Ketogenic</option>
+            <option value="fodmap friendly">Fodmap friendly</option>
+          </select>
+        </div>
 
-      <div>
-        <select onChange={(e) => handleFilterByHealthy(e)}>
-          <option value='max'>Mas saludable</option>
-          <option value='min'>Menos saludable</option>
-        </select>
-      </div>
-
-      <div>
-        <button onClick={prevPage}>Anterior</button>
-        <Paged
-          recipesPerPage={recipesPerPage}
-          allRecipes={allRecipes.length}
-          paged={paged}
-        />
-        <button onClick={nextPage}>Siguiente</button>
+        <div>
+          <select onChange={(e) => handleFilterByHealthy(e)}>
+            <option value="max">Mas saludable</option>
+            <option value="min">Menos saludable</option>
+          </select>
+        </div>
       </div>
 
       <div className={styles.cardContainer}>
@@ -113,7 +110,7 @@ export default function Cards() {
           currentRecipes.map((r) => (
             <Link to={`/home/${r.id}`}>
               <Card title={r.title} image={r.image} diets={r.diets} />
-             </Link>
+            </Link>
           ))
         ) : (
           <h3>No han encontrado recetas</h3>
@@ -127,6 +124,16 @@ export default function Cards() {
             </div>
           )
         })} */}
+      </div>
+
+      <div className={styles.paged}>
+        <button onClick={prevPage}>Anterior</button>
+        <Paged
+          recipesPerPage={recipesPerPage}
+          allRecipes={allRecipes.length}
+          paged={paged}
+        />
+        <button onClick={nextPage}>Siguiente</button>
       </div>
     </div>
   );
